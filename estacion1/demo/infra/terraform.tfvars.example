@@ -1,0 +1,22 @@
+# Copy this file to terraform.tfvars (gitignored) and adjust the values below.
+# Or pass them via -var on the command line (-var='admin_token=...').
+
+environment        = "dev"
+aws_region         = "us-east-1"
+
+# Troubleshooting #21: ALWAYS list(string), never a single string.
+# Troubleshooting #31: bootstrap order — start with just localhost; after the
+# first Vercel deploy, add the Vercel URL here and re-apply.
+cors_origins       = ["http://localhost:3000"]
+
+session_code       = "LATAM2026"
+lambda_memory      = 256
+lambda_timeout     = 30
+log_retention_days = 7
+
+# REQUIRED. Change before running terraform apply. Used by /admin/sessions and
+# /admin/sessions/{code} endpoints to gate session create/delete.
+admin_token           = "REPLACE_ME"
+
+# Optional. Leave empty to disable OTel/New Relic export (no-op in Lambda).
+new_relic_license_key = ""

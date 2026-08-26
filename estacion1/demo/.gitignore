@@ -1,0 +1,22 @@
+# Playwright MCP test artifacts (snapshots, console logs)
+.playwright-mcp/
+
+# Playwright MCP screenshots saved to repo root by browser_take_screenshot.
+# Use leading `/` so unit assets (e.g. frontend/public/default-avatar.png) aren't affected.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+*.swp
+*.swo
+
+# Local env (unit-level .gitignore files cover their own scope)
+.env
+.env.local
+.env.*.local
