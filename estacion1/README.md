@@ -10,7 +10,8 @@ En esta carpeta está todo lo que necesitas para completar tu primera tarea. Lé
 
 | Archivo | Qué es | Cuándo lo necesitas |
 |---|---|---|
-| **hcai-c4-product-vision-board.md** | Template del Product Vision Board, con la guía de cada sección y un ejemplo completo | Si vas a construir un **producto propio o una startup** |
+| **hcai-c4-product-vision-board.pdf** | **La guía completa en PDF** — los dos templates explicados sección por sección, errores comunes, un ejemplo resuelto y cómo usar tu coding agent para completarlo | Empieza por acá: sirve para los dos caminos |
+| **hcai-c4-product-vision-board.md** | Template del Product Vision Board en Markdown, para llenar | Si vas a construir un **producto propio o una startup** |
 | **hcai-c4-internal-solution-brief.md** | Template del Internal Solution Brief | Si vienes de una **empresa** y vas a resolver un problema interno de tu organización |
 | **hcai-c4-banco-productos.md** | Banco de productos | Si no traes idea propia: elige uno de este catálogo y constrúyelo durante el programa |
 | **demo/** — [SkillWall Live](./demo) | La demo end-to-end que viste en clase | El repo arranca con la fase **Inception** completa. Tu trabajo es ejecutar **Construction** con IA hasta dejar las 3 unidades desplegadas |
