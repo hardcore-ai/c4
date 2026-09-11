@@ -1,0 +1,100 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Preparación para estación 7</title><style>
+  *{box-sizing:border-box}body{font:12pt/1.45 Calibri,Aptos,Arial,sans-serif;color:#1A1A1A;max-width:850px;margin:32px auto;padding:0 24px}
+  h1{font-size:26pt;line-height:1.1}h2{font-size:17pt;margin-top:24px;break-after:avoid}h3{break-after:avoid}
+  a{color:#1A1A1A;text-decoration:underline}table{border-collapse:collapse;width:100%;font-size:10pt}th,td{padding:8px;border:1px solid #808080;text-align:left}th{background:#C8E600}
+  pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;border:1px solid #808080;font-size:9pt}code{overflow-wrap:anywhere}li{margin:5px 0}tr,pre{break-inside:avoid}
+  @media print{@page{size:A4;margin:16mm}body{max-width:none;margin:0;padding:0}a{text-decoration:none}}
+  </style></head><body><h1>Antes de estación 7: prepara todas las tareas</h1>
+<p><strong>Fecha de clase:</strong> martes 15 de septiembre de 2026, 7 PM Bogotá. <strong>Tiempo orientativo:</strong> 75–105 minutos; depende del tamaño y madurez de tu proyecto. Continúa el paquete iniciado en clase. Entrega antes de la clase en el canal habitual del curso.</p>
+<p>Prepara todas las tareas necesarias para implementar el alcance definido de tu proyecto en estaciones 4 y 5. Usa la skill de OpenSymphony <code>create-implementation-plan</code> para generar y revisar el paquete completo. En estación 7 empezaremos a ejecutarlo por dependencias; no es necesario implementar todo antes de clase. Si te falta tu diseño, usa los artefactos de EntreVista AI de estación 5; el validador de contraseña es solo una muestra del formato.</p>
+<h2>1. Revisa el mapa (5 minutos)</h2>
+<p>El <strong>modelo</strong> interpreta y propone. El <strong>arnés</strong> le permite leer, editar y ejecutar con permisos. Una <strong>skill</strong> aporta un procedimiento reutilizable. Un <strong>hook</strong> reacciona a un evento del arnés. El <strong>orquestador</strong> coordina tareas, dependencias y estados. La <strong>evidencia</strong> permite revisar el resultado.</p>
+<p>Nuestro recorrido será: tarea lista → ejecución → pruebas → revisión → merge autorizado. Un agente puede terminar una ejecución sin haber resuelto la tarea. La revisión de código y las pruebas deben confirmar el resultado.</p>
+<h2>2. Comprueba tus herramientas (10–15 minutos)</h2>
+<p>Mantén el arnés que ya usas en el curso. Comprueba que puedes abrir el repositorio, hacer una consulta sobre un archivo y ejecutar un comando con tu cuenta autenticada. No necesitas instalar varios arneses.</p>
+<p>Si aún no tienes ninguno, usa Claude Code siguiendo la <a href="https://code.claude.com/docs/en/quickstart">instalación oficial</a>. Requiere una cuenta con acceso; instalarlo no concede una suscripción.</p>
+<table>
+<thead>
+<tr>
+<th>Sistema</th>
+<th>Instalación de Claude Code</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>macOS con Homebrew</td>
+<td><code>brew install --cask claude-code</code></td>
+</tr>
+<tr>
+<td>Windows con WinGet</td>
+<td><code>winget install Anthropic.ClaudeCode</code></td>
+</tr>
+<tr>
+<td>Linux, macOS sin Homebrew o WSL</td>
+<td>Sigue la opción nativa de la guía oficial</td>
+</tr>
+</tbody></table>
+<p>Ejecuta <code>claude --version</code>, abre <code>claude</code> en tu repo y completa la autenticación. Si ya usas otro arnés, registra su nombre y versión o pantalla de información.</p>
+<p>Comprueba Git con <code>git --version</code>; si falta, usa <a href="https://git-scm.com/install/">Git para tu sistema</a>. Abre una terminal en tu proyecto y ejecuta <code>git status</code>. Debe reconocer el repositorio. No borres cambios existentes para dejarlo limpio.</p>
+<p>En <strong>GitHub</strong>, inicia sesión y confirma que puedes acceder al repo donde trabajarás y crear una rama/PR. En <strong>Linear</strong>, entra al espacio del curso y confirma que puedes crear y editar una tarea en el equipo acordado. No hace falta configurar una API ni MCP para esta preparación: la interfaz web sirve.</p>
+<p><strong>Smoke test del arnés:</strong> pide «Lee el README y las instrucciones de este repo; dime el objetivo y el comando de pruebas, citando los archivos. No modifiques nada». Comprueba tú las referencias.</p>
+<h2>3. Genera el plan completo con la skill (35–50 minutos)</h2>
+<p>La <a href="../estacion6/skills/create-implementation-plan/SKILL.md">skill create-implementation-plan</a> está incluida en el material. Abre su archivo en tu arnés y pídele que lo lea y siga. No necesitas instalar OpenSymphony para usar estas instrucciones. Si ya tienes la skill instalada, invócala por su nombre.</p>
+<p>Trabaja en la raíz de tu proyecto. Proporciona las rutas reales a tu PRD, Inception, Construction, decisiones técnicas y código existente. Envía este prompt:</p>
+<pre><code class="language-text">Usa la skill create-implementation-plan para preparar TODAS las tareas
+necesarias para implementar el alcance aprobado de mi proyecto.
+Lee primero mis artefactos de estaciones 4 y 5 y el estado actual del repo.
+No limites el plan a una feature ni a una tarea de muestra.
+
+Crea docs/tasks/task-package.yaml, docs/tasks/milestones.md y un archivo
+Markdown por tarea con el frontmatter y las secciones exigidos por la skill.
+Organiza milestones, dependencias, prioridades y criterios de aceptación.
+Incluye integración, pruebas y el trabajo de calidad, seguridad y despliegue
+que el alcance requiera. No agregues funcionalidades fuera del spec.
+
+Comprueba cobertura: cada requisito debe apuntar a tareas o a evidencia
+de que ya está implementado. Registra esto en docs/tasks/cobertura.md.
+Explicita vacíos y decisiones pendientes; no inventes requisitos.
+Si hay incertidumbre, incluye una tarea para resolverla y bloquea las
+dependientes. Respeta la identidad de tareas y waves ya publicadas.
+
+Valida archivos, IDs, referencias, milestones y ausencia de ciclos.
+No implementes ni publiques todavía. Entrega el paquete para mi revisión.
+</code></pre>
+<p>El entregable incluye:</p>
+<ul>
+<li><code>docs/tasks/task-package.yaml</code>: inventario completo y canónico de tareas de la ronda de planificación.</li>
+<li><code>docs/tasks/milestones.md</code>: objetivos y orden de los hitos.</li>
+<li>Un Markdown por tarea: alcance, entregables, aceptación, plan de pruebas, contexto y Definition of Ready.</li>
+<li><code>docs/tasks/cobertura.md</code>: tabla requisito → tareas / evidencia existente / vacío pendiente. Es un complemento de esta actividad, no un campo nuevo del manifest.</li>
+</ul>
+<p>Revisa que no falte ninguna parte del alcance. Un paquete completo puede contener tareas bloqueadas; solo las que tienen dependencias y decisiones resueltas están listas para ejecutar. Si tu proyecto ya tiene tareas, conserva IDs y evita duplicados.</p>
+<h2>4. Revisa cobertura y dependencias (10–15 minutos)</h2>
+<p>Pide al agente una segunda pasada de revisión del paquete y comprueba tú sus conclusiones:</p>
+<ul>
+<li>Todos los requisitos del alcance están representados.</li>
+<li>Cada archivo del manifest existe y cada ID es único.</li>
+<li>Milestones, dependencias y padres apuntan a entradas válidas; el grafo no tiene ciclos.</li>
+<li>Cada tarea tiene aceptación observable y un plan de validación concreto.</li>
+<li>Hay tareas iniciales ejecutables; los bloqueos restantes están explícitos.</li>
+</ul>
+<p>Ejecuta la validación disponible del repo y registra el resultado actual. No inventes pruebas exitosas. Si no existe runner, incluye su preparación como tarea y expresa las dependencias correspondientes. Mantén contexto y decisiones en los archivos existentes de tu proyecto; no reemplaces las reglas de AI-DLC.</p>
+<h2>5. Prepara la publicación en Linear (10 minutos)</h2>
+<p>Revisa primero el paquete completo. <code>create-implementation-plan</code> genera el plan; la publicación es un paso separado. Con <code>convert-tasks-to-linear</code>, si lo tienes disponible, valida el paquete y revisa el dry-run antes de autorizar la publicación en el equipo y proyecto correctos.</p>
+<p>También puedes publicarlo por la interfaz web. Mantén correspondencia entre IDs locales e issues reales, milestones y dependencias. No publiques de nuevo tareas ya existentes. Usa un proyecto de preparación sin despacho automático activo: publicar en un proyecto observado por un orquestador puede iniciar trabajo.</p>
+<p>Si faltan acceso, integración o tiempo de publicación, entrega el paquete completo validado y registra «publicación pendiente». Ese bloqueo no justifica reducirlo a una tarea. La importación puede resolverse en E7.</p>
+<h2>6. Entrega (5 minutos)</h2>
+<ul>
+<li>Enlace al repo con manifest, milestones y <strong>todos</strong> los archivos de tareas.</li>
+<li>Tabla de cobertura y resultado de la revisión del grafo.</li>
+<li>Enlace al proyecto de Linear y correspondencia de IDs, o bloqueo de publicación.</li>
+<li>Arnés utilizado y comando de validación con resultado real, sin credenciales.</li>
+<li>Primera tarea ejecutable identificada y una pregunta para clase.</li>
+</ul>
+<p><strong>El plan está preparado</strong> cuando cubre todo el alcance y permite decidir qué ejecutar primero y qué debe esperar. <strong>Necesitas apoyo</strong> si quedan requisitos sin descomponer o decisiones que impiden planificar. Reporta sistema operativo, paso, comando y error exacto después de 10 minutos de bloqueo de instalación.</p>
+<h2>Qué haremos en estación 7</h2>
+<p>Primero revisaremos el paquete y elegiremos una tarea sin bloqueos para ejecutarla con el arnés disponible. Después veremos cómo OpenSymphony coordina el mismo ciclo con tareas de Linear y revisión en GitHub. El instructor mostrará su instalación; instalar OpenSymphony, EBO, Prime Agent o exo no es requisito de esta tarea.</p>
+<p>Ruta del taller: 15 min de readiness; 20 min de dispatch manual guiado; 40 min de implementación; 25 min de pruebas y revisión; 10 min de demostración de orquestación; 10 min de cierre. Total: 120 minutos. Objetivo: un cambio revisable; merge solo si sus verificaciones y revisión lo permiten.</p>
+<h2>Recursos y profundización opcional</h2>
+<p>Consulta la <a href="../estacion6/recursos.md">lista de recursos de estaciones 6 y 7</a>. Para la preparación, necesitas especialmente <code>create-implementation-plan</code>; <code>convert-tasks-to-linear</code> y <code>linear</code> corresponden al paso de publicación y operación en Linear.</p>
+<p>Lee <a href="https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/">persistencia y compaction</a> y responde: ¿qué decisiones perderías si reiniciaras tu sesión? Mira <a href="https://code.claude.com/docs/en/hooks-guide">hooks</a> y propone un evento y una acción verificable. Estas lecturas no añaden instalaciones obligatorias.</p>
+</body></html>
