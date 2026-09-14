@@ -12,6 +12,8 @@ miércoles de 7 a 8pm**.
 
 | Carpeta | Qué es |
 |---|---|
+| [`estacion6`](./estacion6) | **Del spec al harness** — presentación, ejemplo trabajado y preparación de una tarea verificable |
+| [`estacion7`](./estacion7) | **Del backlog al cambio revisable** — tarea de preparación, accesos y guía para el taller |
 | [`nivelacion2`](./nivelacion2) | Nivelación 2 — construye tu primer agente de IA: triage de tickets con Claude, MCP y Skills |
 | [`estacion2`](./estacion2) | **De la idea a la definición** — manual del estudiante, prompts para co-crear tu PRD, ejemplo trabajado (AgentVault) en `docs/` y las slides |
 | [`estacion1`](./estacion1) | **Introducción y Demostración** — templates de la tarea (Product Vision Board / Internal Solution Brief), banco de productos, la demo de referencia AI-DLC (SkillWall Live) y las slides de la sesión |
