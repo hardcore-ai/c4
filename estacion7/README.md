@@ -15,4 +15,4 @@ El recorrido dedica aproximadamente 50 minutos a conceptos y lecciones de Parlin
 
 Prueba el proceso con una tarea de tu paquete de E6. Sigue el contexto que recibe el agente, sus notas de trabajo, la validación, la revisión y el cierre. Consulta la memoria que queda disponible para la siguiente tarea. Puedes hacerlo con OpenSymphony o adaptar los principios al arnés y orquestador que uses.
 
-Para el instructor: [guion, tiempos y contingencias](fuente/guion.md). `fuente/` contiene notas de edición y referencia; HTML y PDF son los materiales de presentación. Las capturas de la app incluidas en las diapositivas son referencias con datos de ejemplo, identificadas en el guion.
+Las capturas de la app incluidas en las diapositivas contienen datos de ejemplo y provienen de la documentación de OpenSymphony.
