@@ -2,7 +2,7 @@
 
 **Fecha de clase:** martes 15 de septiembre de 2026, 7 PM Bogotá. **Tiempo orientativo:** 75–105 minutos; depende del tamaño y madurez de tu proyecto. Continúa el paquete iniciado en clase. Entrega antes de la clase en el canal habitual del curso.
 
-Prepara todas las tareas necesarias para implementar el alcance definido de tu proyecto en estaciones 4 y 5. Usa la skill de OpenSymphony `create-implementation-plan` para generar y revisar el paquete completo. En estación 7 empezaremos a ejecutarlo por dependencias; no es necesario implementar todo antes de clase. Si te falta tu diseño, usa los artefactos de EntreVista AI de estación 5; el validador de contraseña es solo una muestra del formato.
+Prepara todas las tareas necesarias para implementar el alcance definido de tu proyecto en estaciones 4 y 5. Usa la skill de OpenSymphony `create-implementation-plan` para generar y revisar el paquete completo. En estación 7 el instructor mostrará cómo despachar tareas por dependencias; después podrás aplicar el proceso a tu proyecto. No es necesario implementar todo antes de clase. Si te falta tu diseño, usa los artefactos de EntreVista AI de estación 5; el validador de contraseña es solo una muestra del formato.
 
 ## 1. Revisa el mapa (5 minutos)
 
@@ -99,9 +99,9 @@ Si faltan acceso, integración o tiempo de publicación, entrega el paquete comp
 
 ## Qué haremos en estación 7
 
-Primero revisaremos el paquete y elegiremos una tarea sin bloqueos para ejecutarla con el arnés disponible. Después veremos cómo OpenSymphony coordina el mismo ciclo con tareas de Linear y revisión en GitHub. El instructor mostrará su instalación; instalar OpenSymphony, EBO, Prime Agent o exo no es requisito de esta tarea.
+Recorreremos las seis secciones del curso de Parlina y veremos una demo del instructor: instalación de OpenSymphony, planificación completa, publicación en Linear, despacho, revisión por agentes y landing de una tarea revisada previamente. Después exploraremos los grafos de tareas, conocimiento y código. Instalar OpenSymphony, EBO, Prime Agent o exo no es requisito de esta preparación.
 
-Ruta del taller: 15 min de readiness; 20 min de dispatch manual guiado; 40 min de implementación; 25 min de pruebas y revisión; 10 min de demostración de orquestación; 10 min de cierre. Total: 120 minutos. Objetivo: un cambio revisable; merge solo si sus verificaciones y revisión lo permiten.
+Ruta de la clase: 50 minutos de conceptos y recorrido por Parlina, 60 de demo en vivo y 10 de preguntas. La implementación de tu proyecto continúa después de clase; no habrá bloques de ejercicios durante la sesión.
 
 ## Recursos y profundización opcional
 
