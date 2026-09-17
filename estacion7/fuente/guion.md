@@ -8,17 +8,17 @@ Cada estudiante toma una tarea elegible de su paquete, implementa un cambio acot
 
 | Minutos | Slides | Actividad | Evidencia |
 | --- | --- | --- | --- |
-| 0–15 | 1–5 | Objetivo, mapa y gate de readiness. Cada estudiante elige una tarea. | ID, límites, dependencia y comando de validación. |
-| 15–30 | 6 | Dispatch manual guiado con una tarea del ejemplo o de un estudiante. | Prompt/contrato de ejecución revisado. |
-| 30–70 | 7–8 | Implementación individual o en parejas. El instructor destraba scope, contexto y herramientas. | Diff acotado o bloqueo documentado. |
-| 70–90 | 9 | Ejecutar pruebas, inspeccionar diff y preparar evidencia. | Comandos, resultados y limitaciones. |
-| 90–108 | 10 | Abrir/actualizar PR y revisión cruzada. Corregir un hallazgo si aplica. | PR y comentario de review. |
-| 108–116 | 11–14 | Mostrar qué automatiza OpenSymphony y discutir reutilización frente a política específica. | Decisión: manual, reusable o propio; con razón. |
-| 116–120 | 15–16 | Estado final, siguiente paso y recursos. | Tarea/issue actualizado, sin declarar Done sin evidencia. |
+| 0-15 | 1-5 | Revisar dependencias, alcance, aceptación y validación. Elegir una tarea. | ID, límites, dependencia y comando de validación. |
+| 15-30 | 6 | Ejecutar un dispatch manual con una tarea del ejemplo o de un estudiante. | Contrato de ejecución revisado. |
+| 30-70 | 7-8 | Implementar en forma individual o en parejas. Resolver dudas sobre alcance, contexto y herramientas. | Diff acotado o bloqueo documentado. |
+| 70-90 | 9 | Ejecutar pruebas, inspeccionar el diff y registrar resultados. | Comandos, resultados y limitaciones. |
+| 90-108 | 10 | Abrir o actualizar el PR. Hacer una revisión cruzada y corregir un hallazgo cuando corresponda. | PR y comentario de revisión. |
+| 108-116 | 11-14 | Examinar qué automatiza OpenSymphony y cuándo hace falta política específica. | Elección de enfoque y justificación. |
+| 116-120 | 15-16 | Actualizar el estado de la tarea y consultar los recursos. | Tarea o issue actualizado. |
 
 ## Demo guiada de 15 minutos
 
-La demo sí ejecuta trabajo. No consiste en explicar slides.
+La demo usa una tarea pequeña y un repositorio preparado.
 
 1. Elegir una tarea pequeña y confirmar que no está bloqueada.
 2. Abrir su issue y archivo de tarea; señalar objetivo, límites y aceptación.
@@ -27,16 +27,16 @@ La demo sí ejecuta trabajo. No consiste en explicar slides.
 5. Ejecutar el primer cambio y una validación rápida.
 6. Mostrar cómo se registrarán diff, prueba, limitaciones y PR.
 
-Si el entorno común falla, usar el diff ya preparado del ejemplo y hacer que la audiencia evalúe si cumple el contrato. La práctica de estudiantes se mantiene.
+Si el entorno común falla, usar el diff preparado del ejemplo y evaluar su correspondencia con el contrato.
 
 ## Gas Town y Wheelhouse
 
 Presentar dos afirmaciones separadas:
 
-- La idea transferible: al crecer la autonomía emergen estructuras institucionales como identidad, roles, autoridad, memoria, colas, revisión, incidentes y recuperación.
-- La advertencia empírica: Gas Town fue descontinuado y el autor reportó que no logró construir con él de forma confiable. No presentar Wheelhouse, Continuous Thunderdome ni Wish Factory como patrones validados para los proyectos de estudiantes.
+- La propuesta arquitectónica: al crecer la autonomía aparecen identidad, roles, autoridad, memoria, colas, revisión, incidentes y recuperación.
+- El resultado reportado: Gas Town fue descontinuado y el autor dijo que no logró construir con él de forma confiable. Wheelhouse, Continuous Thunderdome y Wish Factory no tienen resultados publicados que permitan recomendarlos para los proyectos de los estudiantes.
 
-La posición del curso es gradual: primero un ciclo manual observable; luego un orquestador reutilizable; solo después, si el producto necesita política, roles o gobierno inseparables de su dominio, considerar un orquestador propio. OpenSymphony busca mantener reutilizable el sustrato de coordinación e integración; EBO puede ampliar la observación desde trayectorias individuales hacia organizaciones de agentes.
+El curso empieza con un ciclo manual para que cada estado y artefacto sea visible. OpenSymphony automatiza ese ciclo con componentes reutilizables. Un orquestador propio se justifica cuando la política, los roles o el gobierno forman parte del producto. EBO puede registrar relaciones entre agentes, delegaciones, artefactos, revisiones y efectos de producción.
 
 ## Relación con el curso de Parlina
 

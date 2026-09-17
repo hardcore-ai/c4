@@ -12,46 +12,46 @@
 <script type="application/json" id="deck-metadata">{"title":"Estación 7: Del backlog al cambio revisable","audience":"Hardcore AI C4","date":"2026-09-17","visualSystem":"DESIGN.md raíz; diagramas pedagógicos, no fondos decorativos","source":"fuente/guion.md","assetCredits":"Hero informativo reutilizado de Estación 7 C3"}</script>
 <main class="deck">
   <section class="slide cover" contenteditable="true" spellcheck="true" aria-label="1. Del backlog al cambio revisable">
-    <p class="eyebrow">ESTACIÓN 7 · COHORTE 4</p><h1>Del backlog al cambio revisable</h1><p class="lead">Ejecuta una tarea real. Produce evidencia. Abre un PR que otra persona pueda evaluar.</p>
+    <p class="eyebrow">ESTACIÓN 7 · COHORTE 4</p><h1>Del backlog al cambio revisable</h1><p class="lead">Elige una tarea, implementa el cambio, ejecuta las pruebas y abre el PR.</p>
     <footer class="footer"><span>Hardcore AI by 30X · Estación 7</span><span>01 / 16</span></footer>
   </section>
-  <section class="slide" contenteditable="true" spellcheck="true" aria-label="2. Hoy cerramos un ciclo real">
-    <p class="eyebrow">RESULTADO DE LA SESIÓN</p><h1>Hoy cerramos un ciclo real</h1>
+  <section class="slide" contenteditable="true" spellcheck="true" aria-label="2. Resultado de la sesión">
+    <p class="eyebrow">RESULTADO DE LA SESIÓN</p><h1>Una tarea convertida en un PR revisable</h1>
     <div class="flow"><div class="node">Tarea<br>elegible</div><div class="arrow">→</div><div class="node active">Cambio<br>acotado</div><div class="arrow">→</div><div class="node">Pruebas<br>y evidencia</div><div class="arrow">→</div><div class="node">PR listo<br>para revisión</div></div>
-    <div class="grid2"><div class="panel bad"><h2>No es el objetivo</h2><p>Instalar todos los arneses.<br>Construir un orquestador.<br>Terminar todo el proyecto.</p></div><div class="panel good"><h2>Sí es el objetivo</h2><p>Completar una unidad pequeña.<br>Demostrar qué funciona.<br>Dejar el siguiente paso claro.</p></div></div>
-    <p class="take">Una ejecución puede terminar sin que la tarea esté resuelta. La evidencia decide.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · OBJETIVO</span><span>02 / 16</span></footer>
+    <div class="grid2"><div class="panel"><h2>Alcance</h2><p>Una tarea pequeña, con dependencias resueltas y validación disponible.</p></div><div class="panel good"><h2>Entrega</h2><p>Diff, resultados de pruebas, PR y estado actualizado.</p></div></div>
+    <p class="take">Si aparece un bloqueo externo, se registra la causa y la tarea queda bloqueada.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · OBJETIVO</span><span>02 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="3. Ruta de 120 minutos">
-    <p class="eyebrow">TALLER · 120 MIN</p><h1>Hablar poco. Ejecutar mucho.</h1>
-    <div class="timeline"><b>00–15</b><span>Readiness: elegir una tarea sin bloqueos reales</span><b>15–30</b><span>Dispatch manual guiado: convertir el contrato en un intento</span><b>30–70</b><span>Implementación individual o en pareja</span><b>70–90</b><span>Pruebas, evidencia y PR</span><b>90–108</b><span>Revisión cruzada y corrección</span><b>108–120</b><span>OpenSymphony, límites de reutilización y cierre</span></div>
-    <p class="take">El instructor destraba el proceso; no reemplaza el trabajo del estudiante.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RUTA</span><span>03 / 16</span></footer>
+    <p class="eyebrow">TALLER · 120 MIN</p><h1>Agenda de trabajo</h1>
+    <div class="timeline"><b>00-15</b><span>Elegir una tarea con dependencias resueltas</span><b>15-30</b><span>Preparar y ejecutar un dispatch manual</span><b>30-70</b><span>Implementar en forma individual o en pareja</span><b>70-90</b><span>Ejecutar pruebas y abrir el PR</span><b>90-108</b><span>Revisar el PR y corregir un hallazgo</span><b>108-120</b><span>Examinar automatización con OpenSymphony</span></div>
+    <p class="take">A los 90 minutos, cada equipo debe tener un diff y resultados de validación.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RUTA</span><span>03 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="4. El mapa que usaremos todo el tiempo">
-    <p class="eyebrow">MAPA DE CAPAS</p><h1>Ubica cada decisión antes de actuar</h1>
+    <p class="eyebrow">MAPA DE CAPAS</p><h1>Dónde vive cada decisión</h1>
     <div class="flow map"><div class="node">Spec<br><small>qué necesita el producto</small></div><div class="arrow">→</div><div class="node">Tarea<br><small>unidad y aceptación</small></div><div class="arrow">→</div><div class="node active">Orquestación<br><small>estado y elegibilidad</small></div><div class="arrow">→</div><div class="node">Arnés<br><small>herramientas y sesión</small></div><div class="arrow">→</div><div class="node">Repo + PR<br><small>cambio y evidencia</small></div></div>
     <div class="grid3"><div class="panel"><b class="num">Alcance</b><p>Qué puede cambiar.</p></div><div class="panel"><b class="num">Contexto</b><p>Qué debe conocer.</p></div><div class="panel"><b class="num">Ejecución</b><p>Cómo actúa y comprueba.</p></div></div>
-    <p class="take">Spec gobierna intención · tarea gobierna contrato · Linear gobierna estado · GitHub conserva cambio y evidencia.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · MAPA</span><span>04 / 16</span></footer>
+    <p class="take">La spec define la intención; la tarea, el contrato; Linear, el estado; GitHub, el cambio y su evidencia.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · MAPA</span><span>04 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="5. Gate de readiness">
     <p class="eyebrow">GATE 1 · ELEGIBILIDAD</p><h1>¿Esta tarea puede empezar ahora?</h1>
     <div class="gate"><div class="decision"><h2>Lista</h2><ul class="checklist"><li>Dependencias resueltas</li><li>Alcance y fuera de alcance</li><li>Aceptación observable</li><li>Comando de validación real</li></ul></div><div class="center">?</div><div class="decision"><h2>Bloqueada</h2><ul class="checklist"><li>Decisión pendiente</li><li>Acceso o repo faltante</li><li>Runner inexistente</li><li>Contrato ambiguo</li></ul></div></div>
-    <p class="take">Bloqueada no significa fallida. Significa: no inventes; resuelve o elige otra tarea.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · READINESS</span><span>05 / 16</span></footer>
+    <p class="take">Si falta una condición, registra el bloqueo y elige otra tarea ejecutable.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · READINESS</span><span>05 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="6. Dispatch manual en cuatro campos">
     <p class="eyebrow">DEMO GUIADA · 15 MIN</p><h1>Dispatch manual en cuatro campos</h1>
     <div class="contract"><b>Objetivo</b><span>Resultado observable de esta tarea, no del proyecto completo.</span><b>Límites</b><span>Archivos o superficies permitidas; qué queda fuera.</span><b>Validación</b><span>Pruebas, inspección o comportamiento que demuestra el resultado.</span><b>Entrega</b><span>Diff, comandos y resultados, riesgos y preguntas pendientes.</span></div>
     <div class="quote">“Toma únicamente esta tarea. Si está bloqueada, explica por qué y detente.”</div>
-    <p class="take">Este contrato funciona con Codex, Claude Code, OpenHands u otro arnés.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · DISPATCH</span><span>06 / 16</span></footer>
+    <p class="take">Adjunta al dispatch la tarea y las instrucciones del repositorio.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · DISPATCH</span><span>06 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="7. Elige tu tarea">
     <p class="eyebrow">TU TURNO · 8 MIN</p><h1>Elige la primera tarea ejecutable</h1>
     <div class="grid2"><div class="panel good"><h2>Debe caber hoy</h2><ul class="checklist"><li>Un comportamiento o integración</li><li>Pocos archivos afectados</li><li>Validación disponible</li><li>Sin dependencias abiertas</li></ul></div><div class="panel orange"><h2>Registra antes de empezar</h2><p>ID de tarea y issue.<br>Rama o worktree.<br>Comando de prueba.<br>Qué NO vas a cambiar.</p></div></div>
-    <p class="take">Si ninguna tarea está lista, tu trabajo es reparar readiness, no fingir implementación.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · PRÁCTICA</span><span>07 / 16</span></footer>
+    <p class="take">Si ninguna tarea cumple estas condiciones, corrige una dependencia, un criterio o el comando de validación.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · PRÁCTICA</span><span>07 / 16</span></footer>
   </section>
-  <section class="slide" contenteditable="true" spellcheck="true" aria-label="8. Un loop pequeño y verificable">
-    <p class="eyebrow">EJECUCIÓN · 40 MIN</p><h1>Un loop pequeño y verificable</h1>
+  <section class="slide" contenteditable="true" spellcheck="true" aria-label="8. Ciclo de ejecución">
+    <p class="eyebrow">EJECUCIÓN · 40 MIN</p><h1>Ciclo de ejecución</h1>
     <div class="loop"><div><strong>1 · LEER</strong><p>Issue, tarea, instrucciones y archivos relevantes.</p></div><div><strong>2 · PLANEAR</strong><p>Plan corto. Riesgo principal. Validación prevista.</p></div><div><strong>3 · CAMBIAR</strong><p>La modificación mínima que satisface el contrato.</p></div><div><strong>4 · COMPROBAR</strong><p>Ejecutar pruebas. Inspeccionar diff. Corregir.</p></div></div>
-    <p class="take">Si el agente se desvía, vuelve al contrato. No compenses ampliando el prompt indefinidamente.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · EJECUCIÓN</span><span>08 / 16</span></footer>
+    <p class="take">Una desviación de alcance requiere detener la ejecución y corregir el contrato o el plan.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · EJECUCIÓN</span><span>08 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="9. Evidencia antes de abrir el PR">
     <p class="eyebrow">GATE 2 · EVIDENCIA</p><h1>Antes de abrir el PR, reúne cuatro pruebas</h1>
@@ -59,42 +59,42 @@
     <div class="quote">“Ejecutó tests” prueba actividad. “Estos tests pasaron y cubren estos criterios” aporta evidencia.</div>
     <footer class="footer"><span>Hardcore AI by 30X · Estación 7 · EVIDENCIA</span><span>09 / 16</span></footer>
   </section>
-  <section class="slide" contenteditable="true" spellcheck="true" aria-label="10. Review es otra ejecución">
-    <p class="eyebrow">GATE 3 · REVISIÓN</p><h1>Review es otra ejecución, no un sello</h1>
+  <section class="slide" contenteditable="true" spellcheck="true" aria-label="10. Revisión del cambio">
+    <p class="eyebrow">GATE 3 · REVISIÓN</p><h1>La revisión vuelve a comprobar el contrato</h1>
     <table><thead><tr><th>Pregunta</th><th>Evidencia que necesita</th><th>Hallazgo útil</th></tr></thead><tbody><tr><td>¿Cumple el contrato?</td><td>Tarea + diff + resultados</td><td>Criterio no cubierto</td></tr><tr><td>¿Rompe algo?</td><td>Tests + callers + invariantes</td><td>Regresión concreta</td></tr><tr><td>¿Amplió el alcance?</td><td>Fuera de alcance + diff</td><td>Cambio innecesario</td></tr><tr><td>¿Puede integrarse?</td><td>CI + conflictos + aprobación</td><td>Bloqueo antes del merge</td></tr></tbody></table>
-    <p class="take">El revisor humano conserva la decisión de merge. La automatización mejora cobertura, no autoridad.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · REVIEW</span><span>10 / 16</span></footer>
+    <p class="take">El merge requiere aceptación cubierta, pruebas aprobadas y revisión sin bloqueos.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · REVIEW</span><span>10 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="11. Qué automatiza OpenSymphony">
-    <p class="eyebrow">SYMPHONY → OPENSYMPHONY</p><h1>Automatiza coordinación, no criterio mágico</h1>
+    <p class="eyebrow">SYMPHONY → OPENSYMPHONY</p><h1>Qué automatiza OpenSymphony</h1>
     <div class="flow"><div class="node">Linear<br><small>trabajo elegible</small></div><div class="arrow">→</div><div class="node active">OpenSymphony<br><small>workspace + intento</small></div><div class="arrow">→</div><div class="node">Arnés<br><small>ejecución</small></div><div class="arrow">→</div><div class="node">GitHub<br><small>PR + review</small></div></div>
     <div class="grid3"><div class="panel"><h2>Coordina</h2><p>Estados, dependencias, workspaces, reintentos.</p></div><div class="panel"><h2>Delega</h2><p>El trabajo al arnés mediante una integración explícita.</p></div><div class="panel"><h2>Reconcilia</h2><p>Lo observado con el estado vigente del trabajo.</p></div></div>
-    <p class="take">Primero entendimos el ciclo manual. Ahora podemos decidir qué automatizar.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · ORQUESTACIÓN</span><span>11 / 16</span></footer>
+    <p class="take">La política del repositorio define elegibilidad, validación, revisión y cierre.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · ORQUESTACIÓN</span><span>11 / 16</span></footer>
   </section>
-  <section class="slide" contenteditable="true" spellcheck="true" aria-label="12. La lección de Gas Town">
-    <p class="eyebrow">GAS TOWN → WHEELHOUSE</p><h1>Una institución necesita más que agentes</h1>
-    <div class="split"><div><h2>Hallazgo valioso</h2><p>El trabajo durable se vuelve un grafo. Aparecen roles, autoridad, memoria, colas, revisión, incidentes y recuperación.</p><p class="source">Síntesis aportada por el instructor sobre “The Shape of Things to Come”.</p></div><div><h2>Advertencia operativa</h2><p>Gas Town fue descontinuado. El propio autor reportó que no logró construir con él de forma confiable. Una arquitectura sugerente no demuestra finalización de tareas.</p><p class="source">Comentario citado en AI News; tratar como experiencia reportada, no benchmark.</p></div></div>
-    <p class="take">La metáfora enseña qué responsabilidades emergen. La fiabilidad se demuestra con resultados.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · APRENDIZAJE</span><span>12 / 16</span></footer>
+  <section class="slide" contenteditable="true" spellcheck="true" aria-label="12. Gas Town y Wheelhouse">
+    <p class="eyebrow">GAS TOWN → WHEELHOUSE</p><h1>Arquitectura propuesta y resultado reportado</h1>
+    <div class="split"><div><h2>Propuesta</h2><p>El trabajo se representa como un grafo con roles, autoridad, memoria, colas, revisión, incidentes y recuperación.</p><p class="source">Fuente: síntesis de “The Shape of Things to Come”.</p></div><div><h2>Resultado reportado</h2><p>Gas Town fue descontinuado. Su autor reportó que no logró construir con el sistema de forma confiable.</p><p class="source">Fuente: comentario citado en AI News. No es un benchmark.</p></div></div>
+    <p class="take">EBO permitiría medir delegaciones, artefactos, revisiones y efectos de producción a través del grafo.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · APRENDIZAJE</span><span>12 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="13. Reutiliza el sustrato, especializa la política">
-    <p class="eyebrow">UNA PERSPECTIVA EQUILIBRADA</p><h1>Reutiliza el sustrato. Especializa la política.</h1>
+    <p class="eyebrow">DECISIÓN DE ARQUITECTURA</p><h1>Qué reutilizar y qué construir</h1>
     <div class="ladder"><div><h2>1 · Skill + arnés</h2><p>Una persona, pocas tareas, flujo entendible.</p></div><div><h2>2 · Orquestador reutilizable</h2><p>Tracker, workspaces, reintentos y review repetibles.</p></div><div><h2>3 · Orquestador propio</h2><p>Roles, eventos o gobierno inseparables del producto.</p></div></div>
     <div class="quote">OpenSymphony puede generalizar protocolo, ciclo y observabilidad. La política de una organización puede seguir siendo específica.</div>
-    <p class="take">Construye tu propio orquestador solo cuando los requisitos específicos pagan su costo operativo.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · ARQUITECTURA</span><span>13 / 16</span></footer>
+    <p class="take">Un orquestador propio exige operación, recuperación, telemetría y mantenimiento propios.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · ARQUITECTURA</span><span>13 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="14. Cuando algo falla">
-    <p class="eyebrow">RECUPERACIÓN</p><h1>Fallar es un estado; repetir no es una estrategia</h1>
+    <p class="eyebrow">RECUPERACIÓN</p><h1>Estados de fallo y reglas de escalamiento</h1>
     <table><thead><tr><th>Señal</th><th>Respuesta mínima</th><th>Cuándo escalar</th></tr></thead><tbody><tr><td>Test falla por el cambio</td><td>Corregir dentro del alcance</td><td>El contrato es contradictorio</td></tr><tr><td>Falta dependencia o acceso</td><td>Marcar bloqueada y registrar evidencia</td><td>Requiere decisión o permiso externo</td></tr><tr><td>Dos intentos sin progreso</td><td>Detener, resumir y cambiar estrategia</td><td>El mismo bloqueo persiste</td></tr><tr><td>Review encuentra regresión</td><td>Reabrir la tarea y añadir el caso</td><td>Afecta diseño o alcance aprobado</td></tr></tbody></table>
-    <p class="take">El estado durable debe distinguir completado, fallido, bloqueado y agotado.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RECUPERACIÓN</span><span>14 / 16</span></footer>
+    <p class="take">Estados mínimos: completado, fallido, bloqueado y agotado.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RECUPERACIÓN</span><span>14 / 16</span></footer>
   </section>
   <section class="slide" contenteditable="true" spellcheck="true" aria-label="15. Sprint final">
     <p class="eyebrow">SPRINT · 38 MIN</p><h1>Entrega un cambio que otra persona pueda revisar</h1>
     <div class="sprint"><b>20 min</b><span>Completa o corrige la implementación.</span><em>Diff acotado</em><b>8 min</b><span>Ejecuta validación y reúne evidencia.</span><em>Resultados reales</em><b>5 min</b><span>Abre o actualiza el PR.</span><em>Issue enlazado</em><b>5 min</b><span>Intercambia review con una pareja.</span><em>1 hallazgo o aprobación razonada</em></div>
-    <p class="take">No hagas merge por terminar el reloj. Cierra solo si aceptación, pruebas y revisión lo permiten.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · SPRINT</span><span>15 / 16</span></footer>
+    <p class="take">Sin aceptación cubierta, pruebas aprobadas y revisión, el PR queda abierto.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · SPRINT</span><span>15 / 16</span></footer>
   </section>
-  <section class="slide" contenteditable="true" spellcheck="true" aria-label="16. Cierre y recursos">
-    <p class="eyebrow">CIERRE</p><h1>Deja el sistema mejor preparado para el siguiente intento</h1>
+  <section class="slide" contenteditable="true" spellcheck="true" aria-label="16. Entrega y recursos">
+    <p class="eyebrow">ENTREGA</p><h1>Entrega y recursos</h1>
     <div class="grid2"><div><h2>Entrega de hoy</h2><ul class="checklist"><li>Issue y tarea alineados</li><li>PR con evidencia</li><li>Review registrado</li><li>Estado siguiente explícito</li></ul></div><div class="resources"><p><b>OpenSymphony</b><br><a href="https://opensymphony.dev">opensymphony.dev</a></p><p><b>Skills</b><br><a href="https://github.com/kumanday/OpenSymphony/tree/main/.agents/skills">OpenSymphony/.agents/skills</a></p><p><b>Symphony</b><br><a href="https://github.com/openai/symphony">github.com/openai/symphony</a></p><p><b>EBO</b><br><a href="https://github.com/trilogy-group/engineering-behavior-observatory">Engineering Behavior Observatory</a></p><p><b>Curso de referencia</b><br>Orquestación de trabajo para ingeniería agencial · Parlina</p></div></div>
-    <p class="take">El objetivo no es más agentes. Es trabajo más trazable, recuperable y verificable.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RECURSOS</span><span>16 / 16</span></footer>
+    <p class="take">El issue, el PR y la revisión deben permitir reconstruir qué se intentó, qué ocurrió y qué sigue.</p><footer class="footer"><span>Hardcore AI by 30X · Estación 7 · RECURSOS</span><span>16 / 16</span></footer>
   </section>
 </main>
 </body>
