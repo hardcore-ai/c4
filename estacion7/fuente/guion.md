@@ -29,7 +29,18 @@ Abrir el resumen de cada sección y después cambiar a Parlina. Dedicar 1-2 minu
 | OpenSymphony: Implementación Local-First en Rust y Extensiones | 7 | Seguir un issue desde Linear hasta su workspace, PR y memoria. |
 | Gobernanza, Verificación Mecánica y Evaluación Empírica | 8 | Qué evidencia permite integrar el commit actual. |
 
-Los títulos de las 23 lecciones y sus URLs no estaban disponibles al editar este material. Se conservan los seis títulos de sección indicados por el instructor. El [prompt fuente](../../estacion6/fuente/prompt-parlina-orquestacion.md) orienta los conceptos; no sustituye el índice publicado de Parlina.
+La sección 3 se ajustó a los índices de las lecciones 8-11 compartidos por el instructor. Las demás secciones usan los seis títulos proporcionados y el [prompt fuente](../../estacion6/fuente/prompt-parlina-orquestacion.md); sus índices completos y URLs individuales siguen pendientes de contraste.
+
+### Sección 3: recorrido por las lecciones 8-11
+
+| Lección | Título en Parlina | Conceptos que señalar al abrir la portada |
+| --- | --- | --- |
+| 8 | Protocolo y Ciclo de Vida de Codex app-server | Transporte JSON-RPC 2.0; Thread, Turn e Item; streaming y control de turnos; aprobaciones y RPC bidireccional; contratos in-process, app-server y servidor remoto; implementación del cliente. |
+| 9 | Integración en Proceso con pi SDK y Sistema de Extensiones | AgentSession y AgentSessionRuntime; concurrencia; intercepción de eventos y permisos; herramientas y cola de mutación de archivos; runtime embebido con gate de seguridad. |
+| 10 | Optimización Nativa de Bajo Nivel: Análisis de oh-my-pi | Ejecución nativa en proceso; edición anclada con Hashline; LSP para comprobaciones semánticas; DAP para depuración; aislamiento de subagentes con pi-iso; diagnóstico de fallos de edición. |
+| 11 | Comparativa de SDKs: Claude Agent SDK, OpenHands y OpenCode | Bibliotecas embebidas y cliente-servidor; proceso y subprocesos; arquitectura híbrida y Agent Server; cliente HTTP/REST; acoplamiento a proveedores; permisos, hooks y sandboxing; selección de SDK según requisitos. |
+
+Estos puntos resumen los índices aportados, no una verificación independiente de las capacidades actuales de cada producto. Las actividades de las lecciones quedan como material de consulta posterior. Orca, Paseo y OpenChamber corresponden a la lección 2 de la sección 1 y se presentan allí al distinguir cliente, host y meta-arnés.
 
 ## Preparación de la demo
 
