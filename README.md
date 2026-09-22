@@ -14,6 +14,7 @@ miércoles de 7 a 8pm**.
 |---|---|
 | [`estacion6`](./estacion6) | **Del spec al harness** — presentación, ejemplo trabajado y preparación de una tarea verificable |
 | [`estacion7`](./estacion7) | **Orquestación de trabajo**: recorrido por Parlina y demo de OpenSymphony, revisión, landing y memoria |
+| [`estacion10`](./estacion10) | **Seguridad** — presentación, casos de cadena de suministro y parsers de imágenes, herramientas ofensivas, protección de secretos y modelos de pesos abiertos |
 | [`nivelacion2`](./nivelacion2) | Nivelación 2 — construye tu primer agente de IA: triage de tickets con Claude, MCP y Skills |
 | [`estacion2`](./estacion2) | **De la idea a la definición** — manual del estudiante, prompts para co-crear tu PRD, ejemplo trabajado (AgentVault) en `docs/` y las slides |
 | [`estacion1`](./estacion1) | **Introducción y Demostración** — templates de la tarea (Product Vision Board / Internal Solution Brief), banco de productos, la demo de referencia AI-DLC (SkillWall Live) y las slides de la sesión |
