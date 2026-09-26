@@ -1,0 +1,29 @@
+# LocalStack Pro para la demo de iac-infra.
+# La infra usa ECS, ELBv2, EC2 (NAT, bastion) y Secrets Manager: son features Pro.
+# Requiere exportar el token antes de levantar:  export LOCALSTACK_AUTH_TOKEN=<tu-token>
+services:
+  localstack:
+    image: localstack/localstack-pro:latest
+    container_name: localstack-asistente-ia
+    ports:
+      - "127.0.0.1:4566:4566"           # Gateway unificado de todos los servicios AWS
+      - "127.0.0.1:4510-4559:4510-4559" # Puertos de servicios adicionales
+    environment:
+      # Los mismos servicios que redirige el bloque `endpoints` de infra/provider.tf
+      - SERVICES=s3,dynamodb,ecs,ecr,iam,logs,elbv2,ec2,sts,cloudwatch,secretsmanager
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?Exporta LOCALSTACK_AUTH_TOKEN antes de docker compose up}
+      - DEBUG=0
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  localstack-data:
+    driver: local

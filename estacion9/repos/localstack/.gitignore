@@ -1,0 +1,9 @@
+# Variables de entorno (contiene LOCALSTACK_AUTH_TOKEN — nunca subir)
+.env
+.env.local
+
+# Datos persistidos del emulador
+volume/
+
+# OS
+.DS_Store

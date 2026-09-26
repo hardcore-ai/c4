@@ -1,0 +1,17 @@
+# Terraform local state / cache
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+# NOTA: .terraform.lock.hcl SÍ se versiona — fija versiones/hashes de providers
+# para builds reproducibles (recomendación oficial de HashiCorp).
+
+# SSH keys generadas — NUNCA commitear
+infra/keys/*
+!infra/keys/.gitkeep
+
+# OS
+.DS_Store
+
+# Node (scripts npm del ciclo de vida)
+node_modules/

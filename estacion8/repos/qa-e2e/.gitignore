@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+
+# Build / cache de Next.js
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Variables de entorno (nunca subir llaves)
+.env
+.env.local
+.env.*.local
+
+# Artefactos de Playwright (se regeneran con npm test)
+playwright-report/
+test-results/
+.playwright-mcp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,17 @@
+{
+  "name": "qa-api",
+  "version": "1.0.0",
+  "description": "Pruebas de API REST y evaluación del agente vía endpoint — Clase 8 AI for Developers 30X",
+  "scripts": {
+    "test": "playwright test",
+    "test:endpoints": "playwright test tests/api/endpoints.spec.ts",
+    "test:contratos": "playwright test tests/api/contratos.spec.ts",
+    "test:agente": "playwright test tests/api/agente-api.spec.ts",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^20.19.43",
+    "typescript": "^5.3.0"
+  }
+}

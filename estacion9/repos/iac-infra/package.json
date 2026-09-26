@@ -1,0 +1,17 @@
+{
+  "name": "iac-infra",
+  "description": "Infraestructura del Asistente IA — Terraform con LocalStack y AWS",
+  "scripts": {
+    "infra:init": "terraform -chdir=infra init",
+    "infra:plan:local": "terraform -chdir=infra workspace select -or-create local && terraform -chdir=infra plan -var-file=providers-local.tfvars",
+    "infra:apply:local": "terraform -chdir=infra workspace select -or-create local && terraform -chdir=infra apply -auto-approve -var-file=providers-local.tfvars",
+    "infra:destroy:local": "terraform -chdir=infra workspace select -or-create local && terraform -chdir=infra destroy -auto-approve -var-file=providers-local.tfvars",
+    "infra:plan:aws": "terraform -chdir=infra workspace select -or-create aws && terraform -chdir=infra plan -var-file=providers-aws.tfvars",
+    "infra:apply:aws": "terraform -chdir=infra workspace select -or-create aws && terraform -chdir=infra apply -var-file=providers-aws.tfvars",
+    "infra:destroy:aws": "terraform -chdir=infra workspace select -or-create aws && terraform -chdir=infra destroy -var-file=providers-aws.tfvars",
+    "infra:output:local": "terraform -chdir=infra workspace select -or-create local && terraform -chdir=infra output",
+    "infra:output:aws": "terraform -chdir=infra workspace select -or-create aws && terraform -chdir=infra output",
+    "validate": "bash scripts/validate.sh local",
+    "validate:aws": "bash scripts/validate.sh aws"
+  }
+}

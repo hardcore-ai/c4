@@ -1,0 +1,116 @@
+# ┌─────────────────────────────────────────────────────────────────────────────┐
+# │  LocalStack — Emulador AWS local para desarrollo y pruebas de IaC           │
+# │                                                                             │
+# │  Servicios:                                                                 │
+# │    localstack-main   → API Gateway AWS  :4566                              │
+# │    dynamodb-admin    → Web UI DynamoDB  :8001                              │
+# │    s3-console        → Web UI S3        :8002                              │
+# │                                                                             │
+# │  Acceso:                                                                    │
+# │    API:           http://localhost:4566                                     │
+# │    DynamoDB UI:   http://localhost:8001                                     │
+# │    S3 UI:         http://localhost:8002                                     │
+# │    Health:        http://localhost:4566/_localstack/health                  │
+# └─────────────────────────────────────────────────────────────────────────────┘
+
+services:
+
+  # ── Core: emulador de servicios AWS ─────────────────────────────────────────
+  localstack:
+    image: localstack/localstack-pro:latest
+    container_name: localstack-main
+    hostname: localhost.localstack.cloud
+    ports:
+      - "127.0.0.1:4566:4566"           # Gateway unificado (todos los servicios)
+      - "127.0.0.1:4510-4559:4510-4559" # Rango heredado (compatibilidad)
+    environment:
+      # ── Servicios habilitados ────────────────────────────────────────────────
+      SERVICES: >-
+        s3,dynamodb,ecs,ecr,iam,elbv2,
+        logs,cloudwatch,
+        secretsmanager,ssm,
+        sqs,sns,lambda,
+        sts,route53,acm,
+        ec2
+
+      # ── Configuración general ────────────────────────────────────────────────
+      DEBUG: "${DEBUG:-0}"
+      LOCALSTACK_HOST: "localhost.localstack.cloud:4566"
+
+      # ── Persistencia entre reinicios ─────────────────────────────────────────
+      PERSISTENCE: "${PERSISTENCE:-1}"
+      LOCALSTACK_VOLUME_DIR: /var/lib/localstack
+
+      # ── Integración con Docker (necesario para ECS, Lambda con containers) ──
+      DOCKER_HOST: unix:///var/run/docker.sock
+      LAMBDA_EXECUTOR: "${LAMBDA_EXECUTOR:-docker}"
+
+      # ── Auth token (opcional — descomenta para features Pro) ─────────────────
+      LOCALSTACK_AUTH_TOKEN: "${LOCALSTACK_AUTH_TOKEN}"
+
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+    restart: unless-stopped
+    networks:
+      - localstack_net
+
+  # ── Web UI: gestión visual de tablas DynamoDB ────────────────────────────────
+  # Permite explorar, crear y editar ítems en cualquier tabla DynamoDB local.
+  # Acceso: http://localhost:8001
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin:latest
+    container_name: localstack-dynamodb-admin
+    ports:
+      - "127.0.0.1:8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://localstack:4566"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: "test"
+      AWS_SECRET_ACCESS_KEY: "test"
+    depends_on:
+      localstack:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - localstack_net
+
+  # ── Web UI: gestión visual de buckets y objetos S3 ───────────────────────────
+  # Browser ligero para navegar y gestionar buckets S3 locales.
+  # Acceso: http://localhost:8002
+  s3-console:
+    image: cloudlena/s3manager:latest
+    container_name: localstack-s3-console
+    ports:
+      - "127.0.0.1:8002:8080"
+    environment:
+      ENDPOINT: "localstack:4566"
+      ACCESS_KEY_ID: "test"
+      SECRET_ACCESS_KEY: "test"
+      USE_SSL: "false"
+      FORCE_PATH_STYLE: "true"
+    depends_on:
+      localstack:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - localstack_net
+
+# ── Volúmenes ────────────────────────────────────────────────────────────────
+volumes:
+  localstack_data:
+    driver: local
+
+# ── Red interna ──────────────────────────────────────────────────────────────
+networks:
+  localstack_net:
+    name: localstack_net
+    driver: bridge

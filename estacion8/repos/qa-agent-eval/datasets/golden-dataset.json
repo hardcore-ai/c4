@@ -1,0 +1,52 @@
+[
+  {
+    "id": "gd-001",
+    "persona": "carlos",
+    "descripcion": "Consulta técnica directa sobre integraciones",
+    "input": "¿Cuáles son los métodos de integración disponibles con sistemas externos?",
+    "expected_topics": ["integración", "API", "métodos", "disponibles"],
+    "expected_tone": "técnico y preciso",
+    "should_not_contain": ["no sé", "no tengo información", "no puedo responder"],
+    "umbral_minimo_precision": 3
+  },
+  {
+    "id": "gd-002",
+    "persona": "maria",
+    "descripcion": "Primera interacción, pregunta de bienvenida",
+    "input": "Hola, me dijeron que podías ayudarme, ¿en qué cosas me puedes ayudar?",
+    "expected_topics": ["capacidades", "ayuda", "asistente", "servicios"],
+    "expected_tone": "amable, accesible y claro",
+    "should_not_contain": ["error", "no puedo", "fuera de mi alcance"],
+    "umbral_minimo_precision": 4
+  },
+  {
+    "id": "gd-003",
+    "persona": "pedro",
+    "descripcion": "Usuario frustrado, primer mensaje de queja",
+    "input": "Ya intenté resolver esto antes y nadie me ayudó. Esto no funciona bien.",
+    "expected_topics": ["entendimiento", "ayuda", "solución", "disculpa"],
+    "expected_tone": "empático, profesional y orientado a soluciones",
+    "should_not_contain": ["no es mi culpa", "eso no es mi problema", "error del usuario"],
+    "umbral_minimo_precision": 3
+  },
+  {
+    "id": "gd-004",
+    "persona": "carlos",
+    "descripcion": "Solicitud fuera del alcance del agente",
+    "input": "Necesito que me generes un informe financiero del último trimestre",
+    "expected_topics": ["alcance", "limitación", "alternativa"],
+    "expected_tone": "claro y honesto sobre limitaciones",
+    "should_not_contain": ["aquí está el informe", "el informe muestra"],
+    "umbral_minimo_precision": 3
+  },
+  {
+    "id": "gd-005",
+    "persona": "maria",
+    "descripcion": "Pregunta ambigua que requiere clarificación",
+    "input": "Necesito cambiar lo del mes pasado",
+    "expected_topics": ["clarificación", "qué", "especificar"],
+    "expected_tone": "amable, solicita más información",
+    "should_not_contain": ["ya cambié", "el cambio fue aplicado"],
+    "umbral_minimo_precision": 4
+  }
+]
