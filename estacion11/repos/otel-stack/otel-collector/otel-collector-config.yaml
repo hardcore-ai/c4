@@ -1,0 +1,99 @@
+# ============================================================
+# OpenTelemetry Collector — Configuración de pipelines
+#
+# El Collector es el hub central: recibe toda la telemetría
+# de las aplicaciones vía OTLP y la distribuye a los backends
+# correctos (Tempo para traces, Prometheus para métricas,
+# Loki para logs).
+#
+# Estructura: receivers → processors → exporters → pipelines
+# ============================================================
+
+# --- Receivers: cómo entra la telemetría ---
+receivers:
+  # OTLP es el protocolo nativo de OpenTelemetry.
+  # Las apps envían traces, métricas y logs aquí.
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+# --- Processors: transformaciones antes de exportar ---
+processors:
+  # Agrupa telemetría en lotes antes de enviar al backend.
+  # Reduce la cantidad de requests y mejora el throughput.
+  batch:
+    timeout: 5s
+    send_batch_size: 1024
+
+  # Agrega atributos de recurso a toda la telemetría.
+  # Útil para identificar el ambiente (dev, staging, prod).
+  resource:
+    attributes:
+      - key: deployment.environment
+        value: "local"
+        action: upsert
+
+# --- Exporters: a dónde va la telemetría ---
+exporters:
+  # Traces → Grafana Tempo vía OTLP gRPC
+  otlp/tempo:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+
+  # Métricas → Prometheus vía remote write
+  prometheusremotewrite:
+    endpoint: http://prometheus:9090/api/v1/write
+    tls:
+      insecure: true
+
+  # Logs → Grafana Loki vía su endpoint OTLP nativo (Loki 3.x).
+  # Reemplaza al exporter `loki`, deprecado y eliminado en versiones
+  # recientes del Collector. Con OTLP, Loki convierte los atributos
+  # de recurso en labels (service_name, deployment_environment) y el
+  # resto de atributos en structured metadata (trace_id, span_id, …).
+  otlphttp/loki:
+    endpoint: http://loki:3100/otlp
+    tls:
+      insecure: true
+
+  # Debug: imprime telemetría en la consola del Collector.
+  # Útil para verificar que los datos llegan correctamente.
+  # Quitar en producción.
+  debug:
+    verbosity: basic
+
+# --- Pipelines: conectan receivers → processors → exporters ---
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [otlp/tempo, debug]
+
+    metrics:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [prometheusremotewrite, debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [otlphttp/loki, debug]
+
+  # Telemetría interna del Collector: expone /metrics en :8888 para que
+  # Prometheus la scrapee (spans recibidos, errores de exportación, etc.).
+  # `metrics.address` quedó deprecado: hay que declarar un reader explícito
+  # y escuchar en 0.0.0.0 para que sea alcanzable desde fuera del contenedor.
+  telemetry:
+    metrics:
+      level: detailed
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 0.0.0.0
+                port: 8888

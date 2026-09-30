@@ -1,0 +1,269 @@
+{
+  "annotations": { "list": [] },
+  "description": "Explorador de trazas y logs por sesión y usuario. Las búsquedas TraceQL se muestran como tabla: clic en un Trace ID abre el detalle en Tempo.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "templating": {
+    "list": [
+      {
+        "current": { "selected": false, "text": "", "value": "" },
+        "description": "Email del usuario (ej: test@entrevista.dev)",
+        "hide": 0,
+        "label": "User Email",
+        "name": "user_email",
+        "options": [],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": { "selected": false, "text": "", "value": "" },
+        "description": "Session Trace ID (ej: st-abc123)",
+        "hide": 0,
+        "label": "Session Trace ID",
+        "name": "session_trace_id",
+        "options": [],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": { "selected": false, "text": "", "value": "" },
+        "description": "User ID (ej: dev-user-001)",
+        "hide": 0,
+        "label": "User ID",
+        "name": "user_id",
+        "options": [],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": { "selected": false, "text": "", "value": "" },
+        "description": "Tenant ID (ej: tenant-dev-001)",
+        "hide": 0,
+        "label": "Tenant ID",
+        "name": "tenant_id",
+        "options": [],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 300,
+      "title": "Todas las trazas del servicio",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "gridPos": { "h": 3, "w": 24, "x": 0, "y": 1 },
+      "id": 50,
+      "options": {
+        "content": "### Como usar\n- **Sin filtros**: muestra todas las trazas de `hr-ia-webapp`. Clic en un **Trace ID** abre el detalle (spans, atributos, logs correlacionados).\n- **Session Trace ID**: todas las trazas de una sesion (login a logout). Buscalo en los logs o en el atributo `session.trace.id` de cualquier span.\n- **User Email / User ID / Tenant ID**: filtra por usuario. Deja vacio lo que no necesites.",
+        "mode": "markdown"
+      },
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "description": "Búsqueda TraceQL por servicio. Cada fila es una traza; el Trace ID enlaza a la vista de detalle en Tempo.",
+      "fieldConfig": { "defaults": {}, "overrides": [] },
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 4 },
+      "id": 1,
+      "options": { "cellHeight": "sm", "showHeader": true, "sortBy": [{ "desc": true, "displayName": "Start time" }] },
+      "title": "Trazas recientes — hr-ia-webapp",
+      "type": "table",
+      "targets": [
+        {
+          "datasource": { "type": "tempo", "uid": "tempo" },
+          "queryType": "traceql",
+          "tableType": "traces",
+          "query": "{ resource.service.name = \"hr-ia-webapp\" }",
+          "limit": 50,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "description": "Trazas cuyo span raíz es una llamada al LLM (conversación o evaluación). Útil para saltar directo a los spans llm.* con sus atributos de tokens y latencia.",
+      "fieldConfig": { "defaults": {}, "overrides": [] },
+      "gridPos": { "h": 10, "w": 24, "x": 0, "y": 16 },
+      "id": 7,
+      "options": { "cellHeight": "sm", "showHeader": true, "sortBy": [{ "desc": true, "displayName": "Start time" }] },
+      "title": "Trazas con llamadas al LLM (llm.conversation / llm.evaluation)",
+      "type": "table",
+      "targets": [
+        {
+          "datasource": { "type": "tempo", "uid": "tempo" },
+          "queryType": "traceql",
+          "tableType": "traces",
+          "query": "{ resource.service.name = \"hr-ia-webapp\" && name =~ \"llm\\\\..*\" }",
+          "limit": 50,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 26 },
+      "id": 301,
+      "title": "Busqueda por Session Trace ID",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "description": "Todas las trazas de una sesión de usuario (login → navegación → logout), filtradas por el atributo span.session.trace.id.",
+      "fieldConfig": { "defaults": {}, "overrides": [] },
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 27 },
+      "id": 2,
+      "options": { "cellHeight": "sm", "showHeader": true, "sortBy": [{ "desc": false, "displayName": "Start time" }] },
+      "title": "Trazas de la sesion: $session_trace_id",
+      "type": "table",
+      "targets": [
+        {
+          "datasource": { "type": "tempo", "uid": "tempo" },
+          "queryType": "traceql",
+          "tableType": "traces",
+          "query": "{ resource.service.name = \"hr-ia-webapp\" && span.session.trace.id = \"${session_trace_id}\" }",
+          "limit": 100,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 39 },
+      "id": 302,
+      "title": "Busqueda por usuario",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "description": "Trazas de las requests autenticadas de un usuario (atributo span.user.email que inyecta enrichActiveSpan).",
+      "fieldConfig": { "defaults": {}, "overrides": [] },
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 40 },
+      "id": 3,
+      "options": { "cellHeight": "sm", "showHeader": true, "sortBy": [{ "desc": true, "displayName": "Start time" }] },
+      "title": "Trazas del usuario: $user_email",
+      "type": "table",
+      "targets": [
+        {
+          "datasource": { "type": "tempo", "uid": "tempo" },
+          "queryType": "traceql",
+          "tableType": "traces",
+          "query": "{ resource.service.name = \"hr-ia-webapp\" && span.user.email = \"${user_email}\" }",
+          "limit": 100,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 52 },
+      "id": 303,
+      "title": "Logs correlacionados (Loki)",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "loki", "uid": "loki" },
+      "description": "Logs de la app que contienen el Session Trace ID. Cada línea trae trace_id y span_id como campos: clic en 'Ver trace en Tempo' salta a la traza.",
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 53 },
+      "id": 4,
+      "title": "Logs de la sesion: $session_trace_id",
+      "type": "logs",
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommonLabels": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "sortOrder": "Descending",
+        "dedupStrategy": "none"
+      },
+      "targets": [
+        {
+          "datasource": { "type": "loki", "uid": "loki" },
+          "expr": "{service_name=\"hr-ia-webapp\"} |= `${session_trace_id}`",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "loki", "uid": "loki" },
+      "description": "Logs que mencionan el email del usuario (login, sesión, acciones).",
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 65 },
+      "id": 5,
+      "title": "Logs del usuario: $user_email",
+      "type": "logs",
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommonLabels": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "sortOrder": "Descending",
+        "dedupStrategy": "none"
+      },
+      "targets": [
+        {
+          "datasource": { "type": "loki", "uid": "loki" },
+          "expr": "{service_name=\"hr-ia-webapp\"} |= `${user_email}`",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 77 },
+      "id": 304,
+      "title": "Navegacion del usuario (sidebar, login, logout)",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "loki", "uid": "loki" },
+      "description": "Recorrido del usuario en orden cronológico. Filtra por el campo log_service (structured metadata que inyecta el logger de la app).",
+      "gridPos": { "h": 10, "w": 24, "x": 0, "y": 78 },
+      "id": 6,
+      "title": "User journey (navegacion + auth)",
+      "type": "logs",
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommonLabels": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "sortOrder": "Ascending",
+        "dedupStrategy": "none"
+      },
+      "targets": [
+        {
+          "datasource": { "type": "loki", "uid": "loki" },
+          "expr": "{service_name=\"hr-ia-webapp\"} |= `${session_trace_id}` | log_service =~ `sidebar|header|login-page|campaigns-page|campaign-detail|review-queue|candidate-review|new-campaign|session|auth`",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["traces", "tempo", "loki", "session", "otel"],
+  "time": { "from": "now-1h", "to": "now" },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Session Traces Explorer — User Journey",
+  "uid": "traces-explorer-hr-ia",
+  "version": 3
+}

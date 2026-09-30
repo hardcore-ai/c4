@@ -1,0 +1,120 @@
+services:
+  # ============================================================
+  # OpenTelemetry Collector — hub central de telemetría
+  # Recibe traces, métricas y logs vía OTLP y los distribuye
+  # a Tempo, Prometheus y Loki respectivamente.
+  # ============================================================
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.127.0
+    container_name: otel-collector
+    restart: unless-stopped
+    command: ["--config", "/etc/otelcol/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector/otel-collector-config.yaml:/etc/otelcol/otel-collector-config.yaml:ro
+    ports:
+      - "4317:4317"   # OTLP gRPC — las apps envían telemetría aquí
+      - "4318:4318"   # OTLP HTTP — alternativa HTTP para apps que no soportan gRPC
+      - "8888:8888"   # Métricas internas del Collector (health)
+    depends_on:
+      - tempo
+      - loki
+    networks:
+      - otel-net
+
+  # ============================================================
+  # Grafana Tempo — backend de traces (distribuido)
+  # Recibe spans del Collector y permite consultarlos desde
+  # Grafana vía TraceQL.
+  # ============================================================
+  tempo:
+    image: grafana/tempo:2.7.2
+    container_name: tempo
+    restart: unless-stopped
+    command: ["-config.file", "/etc/tempo/tempo-config.yaml"]
+    volumes:
+      - ./tempo/tempo-config.yaml:/etc/tempo/tempo-config.yaml:ro
+      - tempo-data:/var/tempo
+    ports:
+      - "3200:3200"   # API HTTP de Tempo (queries)
+    networks:
+      - otel-net
+
+  # ============================================================
+  # Prometheus — backend de métricas
+  # Scrapea métricas del Collector (y de cualquier otro target)
+  # y las expone para Grafana.
+  # ============================================================
+  prometheus:
+    image: prom/prometheus:v3.4.1
+    container_name: prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=7d"
+      - "--web.enable-remote-write-receiver"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - otel-net
+
+  # ============================================================
+  # Loki — backend de logs
+  # Recibe logs del Collector vía HTTP push y permite
+  # consultarlos desde Grafana vía LogQL.
+  # ============================================================
+  loki:
+    image: grafana/loki:3.5.0
+    container_name: loki
+    restart: unless-stopped
+    command: ["-config.file", "/etc/loki/loki-config.yaml"]
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
+      - loki-data:/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - otel-net
+
+  # ============================================================
+  # Grafana — visualización unificada
+  # Datasources pre-configurados: Tempo (traces), Prometheus
+  # (métricas), Loki (logs). Todo correlacionado por trace_id.
+  # ============================================================
+  grafana:
+    image: grafana/grafana:12.2.0
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - grafana-data:/var/lib/grafana
+      # Dashboards como código. Por defecto monta los de la app instrumentada
+      # (repo hermano requirement-hr-ia/grafana-dashboards). Para apuntar a
+      # los de tu propio producto: DASHBOARDS_DIR=/ruta/a/tus/dashboards docker compose up -d
+      - ${DASHBOARDS_DIR:-../requirement-hr-ia/grafana-dashboards}:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3001:3000"   # Puerto 3001 para evitar conflicto con Next.js
+    depends_on:
+      - tempo
+      - prometheus
+      - loki
+    networks:
+      - otel-net
+
+networks:
+  otel-net:
+    driver: bridge
+
+volumes:
+  tempo-data:
+  prometheus-data:
+  loki-data:
+  grafana-data:

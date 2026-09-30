@@ -1,0 +1,23 @@
+# ============================================================
+# Grafana — Provisioning de dashboards
+#
+# Este archivo le dice a Grafana dónde buscar dashboards JSON.
+# Los dashboards viven como código junto a la aplicación que
+# instrumentan (requirement-hr-ia/grafana-dashboards) y se montan
+# en /var/lib/grafana/dashboards vía volumen en docker-compose.yml
+# (variable DASHBOARDS_DIR). Grafana los carga al arrancar y los
+# recarga cada 10 s si cambian.
+# ============================================================
+
+apiVersion: 1
+
+providers:
+  - name: "default"
+    orgId: 1
+    folder: ""
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

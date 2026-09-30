@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=development
+      - DYNAMODB_ENDPOINT=http://host.docker.internal:4566
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      # OpenTelemetry — envía telemetría al Collector del otel-stack
+      - OTEL_SERVICE_NAME=hr-ia-webapp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - otel-stack_otel-net
+
+# Conectar a la red del otel-stack para alcanzar el Collector
+networks:
+  otel-stack_otel-net:
+    external: true

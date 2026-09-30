@@ -1,0 +1,72 @@
+# ============================================================
+# Grafana — Datasources pre-configurados
+#
+# Al levantar Grafana, estos datasources ya están conectados
+# y listos para usar. No hay que configurar nada a mano.
+#
+# Correlación: Tempo y Loki están configurados para que al
+# hacer click en un trace_id en los logs, Grafana navegue
+# directamente al trace en Tempo — y viceversa.
+# ============================================================
+
+apiVersion: 1
+
+datasources:
+  # --- Tempo: traces ---
+  - name: Tempo
+    type: tempo
+    access: proxy
+    url: http://tempo:3200
+    uid: tempo
+    isDefault: true
+    jsonData:
+      httpMethod: GET
+      # Correlación traces → logs: desde un trace, ver los logs
+      tracesToLogsV2:
+        datasourceUid: loki
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
+        filterByTraceID: true
+        filterBySpanID: false
+      # Correlación traces → métricas: desde un trace, ver métricas
+      tracesToMetrics:
+        datasourceUid: prometheus
+      # Búsqueda de traces por servicio
+      serviceMap:
+        datasourceUid: prometheus
+      nodeGraph:
+        enabled: true
+      lokiSearch:
+        datasourceUid: loki
+
+  # --- Prometheus: métricas ---
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    uid: prometheus
+    jsonData:
+      httpMethod: POST
+      # Exemplars: desde una métrica, navegar al trace específico
+      exemplarTraceIdDestinations:
+        - name: trace_id
+          datasourceUid: tempo
+
+  # --- Loki: logs ---
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    uid: loki
+    jsonData:
+      # Correlación logs → traces: desde un log, ver el trace.
+      # Con ingesta OTLP, Loki guarda trace_id como structured metadata
+      # (un campo, no texto dentro de la línea), así que el matcher es
+      # por nombre de campo (matcherType: label), no por regex sobre el body.
+      derivedFields:
+        - datasourceUid: tempo
+          matcherType: label
+          matcherRegex: trace_id
+          name: trace_id
+          url: "$${__value.raw}"
+          urlDisplayLabel: "Ver trace en Tempo"

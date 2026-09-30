@@ -1,0 +1,33 @@
+# ============================================================
+# Prometheus — Configuración de scraping de métricas
+#
+# Prometheus recolecta métricas de dos formas:
+# 1. Remote write: el Collector le envía métricas (push)
+# 2. Scrape: Prometheus consulta endpoints de métricas (pull)
+#
+# En este stack, las métricas de la app llegan vía remote write
+# desde el Collector. Los scrape targets son para monitorear
+# la salud del propio stack de observabilidad.
+# ============================================================
+
+global:
+  scrape_interval: 15s        # Cada 15s consulta los targets
+  evaluation_interval: 15s    # Cada 15s evalúa las reglas
+
+scrape_configs:
+  # Métricas internas del propio Prometheus
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Métricas internas del OpenTelemetry Collector
+  # Permite monitorear si el Collector está sano:
+  # spans recibidos, exportados, errores, queue size.
+  - job_name: "otel-collector"
+    static_configs:
+      - targets: ["otel-collector:8888"]
+
+  # Métricas generadas por Tempo desde traces (RED metrics)
+  - job_name: "tempo"
+    static_configs:
+      - targets: ["tempo:3200"]

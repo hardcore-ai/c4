@@ -1,0 +1,7 @@
+# Variables de entorno: nunca versionar (.env.local puede contener tokens reales)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
